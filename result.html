@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Weekly Plan</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6A11CB, #007BFF);
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 3rem auto;
+            background: #fff;
+            color: #333;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px;
+        }
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        button {
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Weekly Plan</h1>
+        <p>Your target daily calorie intake: <strong>{{ target_calories }}</strong> calories</p>
+
+        <h2>Weekly Meal Plan</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Breakfast</th>
+                    <th>Lunch</th>
+                    <th>Dinner</th>
+                    <th>Beverage</th>
+                    <th>Snack</th>
+                    <th>Curry</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day, meals in weekly_meals.items() %}
+                <tr>
+                    <td>{{ day }}</td>
+                    <td>{{ meals['Breakfast'] }}</td>
+                    <td>{{ meals['Lunch'] }}</td>
+                    <td>{{ meals['Dinner'] }}</td>
+                    <td>{{ meals['Beverage'] }}</td>
+                    <td>{{ meals['Snack'] }}</td>
+                    <td>{{ meals['Curry'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Weekly Exercise Plan</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Exercise</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day, exercise in weekly_exercises.items() %}
+                <tr>
+                    <td>{{ day }}</td>
+                    <td>{{ exercise }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="button-container">
+            <form method="POST">
+                <button type="submit" name="regenerate" value="true">Regenerate Plan</button>
+            </form>
+            <form action="{{ url_for('analyze_posture') }}" method="get">
+                <button type="submit">Posture Analysis</button>
+            </form>
+            
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+            
+            
+        </div>
+    </div>
+</body>
+</html>

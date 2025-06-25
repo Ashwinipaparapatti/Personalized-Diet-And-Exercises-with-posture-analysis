@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6A11CB, #007BFF);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007BFF;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+            margin-bottom: 1rem;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="number"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 0.3rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            background: #007BFF;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #fff;
+        }
+
+        p a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="username">Enter your Username:</label>
+                <input type="text" name="username" placeholder="Choose a unique username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Create a Password:</label>
+                <input type="password" name="password" placeholder="Enter a strong password" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Your Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" placeholder="Male/Female/Other" required>
+            </div>
+            <div class="form-group">
+                <label for="height">Height (in cm):</label>
+                <input type="number" id="height" name="height" placeholder="Enter your height" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight (in kg):</label>
+                <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
+            </div>
+
+            <!-- Hypertension -->
+            <div class="form-group full-width">
+                <label for="hypertension">Do you have Hypertension?</label>
+                <select id="hypertension" name="hypertension" required>
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+
+            <!-- Diabetes -->
+            <div class="form-group full-width">
+                <label for="diabetes">Do you have Diabetes?</label>
+                <select id="diabetes" name="diabetes" required>
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="meal_type">Meal Preference:</label>
+                <input type="text" id="meal_type" name="meal_type" placeholder="Enter your preference: Veg / Non-veg" required>
+            </div>
+            <div class="form-group full-width">
+                <label for="weight_goal">What is your weight goal?</label>
+                <input type="text" id="weight_goal" name="weight_goal" placeholder="Your weight goal: Lose / Maintain / Gain" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 Personalized Diet and Exercise Planner. All rights reserved.</p>
+    </footer>
+</body>
+</html>

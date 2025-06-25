@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posture Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6A11CB, #007BFF);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            background: #fff;
+            color: #333;
+            padding: 5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #007BFF;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        select, input {
+            padding: 10px;
+            margin-top: 5px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .button-container {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        #videoStream {
+            display: none;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 2px solid #007BFF;
+        }
+        #stopButton {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Posture Analysis</h2>
+        <form id="postureForm">
+            <label for="exercise_name">Select Exercise:</label>
+            <select id="exercise_name" name="exercise_name">
+                <option value="squat">Squat</option>
+                <option value="plank">Plank</option>
+                <option value="walking">Walking</option>
+                <option value="benchpress">Benchpress</option>
+                <option value="swimming">Swimming</option>
+            </select>
+            <button type="button" onclick="startVideo()">Start Analysis</button>
+        </form>
+
+        <img id="videoStream" src="" width="100%">
+        <button id="stopButton" onclick="stopVideo()">Stop</button>
+
+        <div class="button-container">
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function startVideo() {
+            const exercise = document.getElementById("exercise_name").value;
+            document.getElementById("videoStream").src = "/video_feed?exercise=" + exercise;
+            document.getElementById("videoStream").style.display = "block";
+            document.getElementById("stopButton").style.display = "inline-block";
+        }
+
+        function stopVideo() {
+            fetch('/stop')  
+                .then(response => {
+                    document.getElementById("videoStream").src = ""; 
+                    document.getElementById("videoStream").style.display = "none";
+                    document.getElementById("stopButton").style.display = "none";
+                    alert("Video Stream Stopped");
+                });
+        }
+    </script>
+</body>
+</html>
